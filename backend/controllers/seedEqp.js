@@ -1,0 +1,297 @@
+import { Equipment } from "../models/equipmentSchema.js";
+
+const equipmentList = [
+  // Komforts un Ērtības
+  { name: "Keyless Entry", category: "Komforts un Ērtības" },
+  { name: "Keyless Go", category: "Komforts un Ērtības" },
+  { name: "Comfort Access", category: "Komforts un Ērtības" },
+  { name: "Centrālā atslēga", category: "Komforts un Ērtības" },
+  { name: "Start/Stop poga", category: "Komforts un Ērtības" },
+  { name: "Elektriski logi", category: "Komforts un Ērtības" },
+  { name: "Elektriski regulējami spoguļi", category: "Komforts un Ērtības" },
+  { name: "Elektriski nolokāmi spoguļi", category: "Komforts un Ērtības" },
+  { name: "Apsildāmi spoguļi", category: "Komforts un Ērtības" },
+  { name: "Automātiski aptumšojošs spogulis", category: "Komforts un Ērtības" },
+  {
+    name: "Elektriski regulējams stūres statnis",
+    category: "Komforts un Ērtības",
+  },
+  { name: "Atmiņas funkcija", category: "Komforts un Ērtības" },
+  { name: "Ambientais apgaismojums", category: "Komforts un Ērtības" },
+  { name: "Apgaismoti durvju rokturi", category: "Komforts un Ērtības" },
+  { name: "Coming Home / Leaving Home", category: "Komforts un Ērtības" },
+  { name: "Elektriskā rokasbremze", category: "Komforts un Ērtības" },
+  { name: "Auto Hold", category: "Komforts un Ērtības" },
+
+  // Klimats
+  { name: "Kondicionieris", category: "Klimats" },
+  { name: "Automātiskais kondicionieris", category: "Klimats" },
+  { name: "2 zonu klimata kontrole", category: "Klimats" },
+  { name: "3 zonu klimata kontrole", category: "Klimats" },
+  { name: "4 zonu klimata kontrole", category: "Klimats" },
+  { name: "Aizmugurējā klimata kontrole", category: "Klimats" },
+  { name: "Webasto", category: "Klimats" },
+  { name: "Autonomā apsilde", category: "Klimats" },
+  { name: "Priekšdzesēšana", category: "Klimats" },
+  { name: "Apsildāms vējstikls", category: "Klimats" },
+  { name: "Apsildāmi logu mazgātāju uzgaļi", category: "Klimats" },
+
+  // Stūre
+  { name: "Ādas stūre", category: "Stūre" },
+  { name: "Sporta stūre", category: "Stūre" },
+  { name: "Multifunkcionāla stūre", category: "Stūre" },
+  { name: "Stūres apsilde", category: "Stūre" },
+  { name: " F1 tipa lāpstiņas", category: "Stūre" },
+  { name: "Elektriska stūres regulēšana", category: "Stūre" },
+
+  // Sēdekļi
+  { name: "Auduma salons", category: "Sēdekļi" },
+  { name: "Pusādas salons", category: "Sēdekļi" },
+  { name: "Ādas salons", category: "Sēdekļi" },
+  { name: "Nappa ādas salons", category: "Sēdekļi" },
+  { name: "Alcantara salons", category: "Sēdekļi" },
+  { name: "Sporta sēdekļi", category: "Sēdekļi" },
+  { name: "Komforta sēdekļi", category: "Sēdekļi" },
+  { name: "Elektriski vadītāja sēdeklis", category: "Sēdekļi" },
+  { name: "Elektriski pasažiera sēdeklis", category: "Sēdekļi" },
+  { name: "Elektriski aizmugurējie sēdekļi", category: "Sēdekļi" },
+  { name: "Vadītāja sēdekļa atmiņa", category: "Sēdekļi" },
+  { name: "Pasažiera sēdekļa atmiņa", category: "Sēdekļi" },
+  { name: "Sēdekļu apsilde", category: "Sēdekļi" },
+  { name: "Aizmugurējo sēdekļu apsilde", category: "Sēdekļi" },
+  { name: "Sēdekļu ventilācija", category: "Sēdekļi" },
+  { name: "Masāžas funkcija", category: "Sēdekļi" },
+  { name: "Elektrisks sānu atbalsts", category: "Sēdekļi" },
+  { name: "Aizmugurējo sēdekļu nolaišana", category: "Sēdekļi" },
+  { name: "ISOFIX", category: "Sēdekļi" },
+
+  //Multimēdiji
+  { name: "Radio", category: "Multimēdiji" },
+  { name: "DAB", category: "Multimēdiji" },
+  { name: "CD", category: "Multimēdiji" },
+  { name: "DVD", category: "Multimēdiji" },
+  { name: "Bluetooth", category: "Multimēdiji" },
+  { name: "Bluetooth Audio", category: "Multimēdiji" },
+  { name: "AUX", category: "Multimēdiji" },
+  { name: "USB", category: "Multimēdiji" },
+  { name: "USB-C", category: "Multimēdiji" },
+  { name: "SD karte", category: "Multimēdiji" },
+  { name: "Apple CarPlay", category: "Multimēdiji" },
+  { name: "Android Auto", category: "Multimēdiji" },
+  { name: "Wireless CarPlay", category: "Multimēdiji" },
+  { name: "Bezvadu tālruņa uzlāde", category: "Multimēdiji" },
+  { name: "Navigācija", category: "Multimēdiji" },
+  { name: "Skārienekrāns", category: "Multimēdiji" },
+  { name: "Digitālais instrumentu panelis", category: "Multimēdiji" },
+  { name: "Head-Up Display", category: "Multimēdiji" },
+  { name: "Balss vadība", category: "Multimēdiji" },
+  { name: "Žestu vadība", category: "Multimēdiji" },
+  { name: "Wi-Fi Hotspot", category: "Multimēdiji" },
+  { name: "Harman Kardon", category: "Multimēdiji" },
+  { name: "Bose", category: "Multimēdiji" },
+  { name: "Bang & Olufsen", category: "Multimēdiji" },
+  { name: "Burmester", category: "Multimēdiji" },
+  { name: "Bowers & Wilkins", category: "Multimēdiji" },
+  { name: "Meridian", category: "Multimēdiji" },
+  { name: "JBL", category: "Multimēdiji" },
+  { name: "Canton", category: "Multimēdiji" },
+  { name: "Focal", category: "Multimēdiji" },
+  { name: "Subwoofer", category: "Multimēdiji" },
+
+  //Drošība
+  { name: "ABS", category: "Drošība" },
+  { name: "ESP / DSC", category: "Drošība" },
+  { name: "Traction Control", category: "Drošība" },
+  { name: "Brake Assist", category: "Drošība" },
+  { name: "Hill Hold", category: "Drošība" },
+  { name: "Hill Descent", category: "Drošība" },
+  { name: "Bērnu drošības slēdzenes", category: "Drošība" },
+  { name: "Riepu spiediena kontrole", category: "Drošība" },
+  { name: "Signalizācija", category: "Drošība" },
+  { name: "Imobilaizers", category: "Drošība" },
+
+  //Braukšanas Asistenti
+  { name: "Kruīza kontrole", category: "Braukšanas Asistenti" },
+  { name: "Adaptīvā kruīza kontrole", category: "Braukšanas Asistenti" },
+  { name: "Automātiskā avārijas bremzēšana", category: "Braukšanas Asistenti" },
+  { name: "Sadursmes brīdinājums", category: "Braukšanas Asistenti" },
+  { name: "Gājēju atpazīšana", category: "Braukšanas Asistenti" },
+  { name: "Velosipēdistu atpazīšana", category: "Braukšanas Asistenti" },
+  { name: "Joslas šķērsošanas brīdinājums", category: "Braukšanas Asistenti" },
+  { name: "Joslas saglabāšanas asistents", category: "Braukšanas Asistenti" },
+  { name: "Aklo zonu asistents", category: "Braukšanas Asistenti" },
+  { name: "Krustojumu asistents", category: "Braukšanas Asistenti" },
+  { name: "Ceļa zīmju atpazīšana", category: "Braukšanas Asistenti" },
+  { name: "Ātruma ierobežojumu atpazīšana", category: "Braukšanas Asistenti" },
+  { name: "Noguruma kontrole", category: "Braukšanas Asistenti" },
+
+  //Parkošana un Kameras
+  { name: "Parkošanās sensori priekšā", category: "Parkošana un Kameras" },
+  { name: "Parkošanās sensori aizmugurē", category: "Parkošana un Kameras" },
+  { name: "Atpakaļskata kamera", category: "Parkošana un Kameras" },
+  { name: "Priekšējā kamera", category: "Parkošana un Kameras" },
+  { name: "360° kamera", category: "Parkošana un Kameras" },
+  { name: "Surround View", category: "Parkošana un Kameras" },
+  { name: "Top View", category: "Parkošana un Kameras" },
+  { name: "Automātiskā parkošanās", category: "Parkošana un Kameras" },
+  { name: "Remote Park Assist", category: "Parkošana un Kameras" },
+  { name: "Piekabes asistents", category: "Parkošana un Kameras" },
+
+  //Lukturi
+  { name: "Halogēna lukturi", category: "Lukturi" },
+  { name: "Xenon", category: "Lukturi" },
+  { name: "Bi-Xenon", category: "Lukturi" },
+  { name: "LED", category: "Lukturi" },
+  { name: "Full LED", category: "Lukturi" },
+  { name: "Matrix LED", category: "Lukturi" },
+  { name: "Laser LED", category: "Lukturi" },
+  { name: "Adaptīvie lukturi", category: "Lukturi" },
+  { name: "LED dienas gaitas lukturi", category: "Lukturi" },
+  { name: "LED miglas lukturi", category: "Lukturi" },
+  { name: "LED aizmugurējie lukturi", category: "Lukturi" },
+  { name: "Dinamiskie pagriezieni", category: "Lukturi" },
+  { name: "Automātiskās tālās gaismas", category: "Lukturi" },
+  { name: "Adaptīvās tālās gaismas", category: "Lukturi" },
+
+  //Stikli un Jumts
+  { name: "Tonēti stikli", category: "Stikli un Jumts" },
+  { name: "Rūpnīcas tonējums", category: "Stikli un Jumts" },
+  { name: "UV aizsargstikli", category: "Stikli un Jumts" },
+  { name: "Panorāmas jumts", category: "Stikli un Jumts" },
+  { name: "Elektriska lūka", category: "Stikli un Jumts" },
+  { name: "Elektriska panorāmas lūka", category: "Stikli un Jumts" },
+  { name: "Saules žalūzijas aizmugurē", category: "Stikli un Jumts" },
+
+  //Diski un Riepas
+  { name: "Vieglmetāla diski", category: "Diski un Riepas" },
+  { name: "R16", category: "Diski un Riepas" },
+  { name: "R17", category: "Diski un Riepas" },
+  { name: "R18", category: "Diski un Riepas" },
+  { name: "R19", category: "Diski un Riepas" },
+  { name: "R20", category: "Diski un Riepas" },
+  { name: "R21", category: "Diski un Riepas" },
+  { name: "R22", category: "Diski un Riepas" },
+  { name: "Vasaras riepas", category: "Diski un Riepas" },
+  { name: "Ziemas riepas", category: "Diski un Riepas" },
+  { name: "Rezerves ritenis", category: "Diski un Riepas" },
+  { name: "Riepu remonta komplekts", category: "Diski un Riepas" },
+
+  //Piekare
+  { name: "Sporta piekare", category: "Piekare" },
+  { name: "Adaptīvā piekare", category: "Piekare" },
+  { name: "Pneimatiskā piekare", category: "Piekare" },
+  { name: "Elektroniski regulējami amortizatori", category: "Piekare" },
+  { name: "Maināma piekares cietība", category: "Piekare" },
+  { name: "Pazemināta piekare", category: "Piekare" },
+  { name: "Paaugstināta piekare", category: "Piekare" },
+
+  //Transmisija / Braukšana
+  { name: "Manuālā kārba", category: "Transmisija / Braukšana" },
+  { name: "Automātiskā kārba", category: "Transmisija / Braukšana" },
+  { name: "DSG", category: "Transmisija / Braukšana" },
+  { name: "S tronic", category: "Transmisija / Braukšana" },
+  { name: "Tiptronic", category: "Transmisija / Braukšana" },
+  { name: "Steptronic", category: "Transmisija / Braukšana" },
+  { name: "CVT", category: "Transmisija / Braukšana" },
+  { name: "Sporta režīms", category: "Transmisija / Braukšana" },
+  { name: "Eco režīms", category: "Transmisija / Braukšana" },
+  { name: "Comfort režīms", category: "Transmisija / Braukšana" },
+  { name: "Individual režīms", category: "Transmisija / Braukšana" },
+  { name: "Launch Control", category: "Transmisija / Braukšana" },
+  { name: "Pilnpiedziņa", category: "Transmisija / Braukšana" },
+  { name: "Diferenciāļa bloķētājs", category: "Transmisija / Braukšana" },
+  { name: "Elektroniskais diferenciālis", category: "Transmisija / Braukšana" },
+
+  //Eksterjers
+  { name: "Sporta pakotne", category: "Eksterjers" },
+  { name: "Shadow Line", category: "Eksterjers" },
+  { name: "Hroma pakete", category: "Eksterjers" },
+  { name: "Jumta reliņi", category: "Eksterjers" },
+  { name: "Difuzors", category: "Eksterjers" },
+  { name: "Melnie griesti", category: "Eksterjers" },
+  { name: "Alcantara griesti", category: "Eksterjers" },
+
+  //Bagāžnieks
+  { name: "Elektrisks bagāžnieks", category: "Bagāžnieks" },
+  { name: "Kājas kustības sensors", category: "Bagāžnieks" },
+  { name: "Bagāžas pārsegs", category: "Bagāžnieks" },
+  { name: "Bagāžas tīkls", category: "Bagāžnieks" },
+  { name: "Bagāžas organizators", category: "Bagāžnieks" },
+  { name: "12V ligzda", category: "Bagāžnieks" },
+  { name: "230V kontaktligzda", category: "Bagāžnieks" },
+  { name: "Slēpošanas lūka", category: "Bagāžnieks" },
+
+  //Vilkšana
+  { name: "Sakabes āķis", category: "Vilkšana" },
+  { name: "Noņemams sakabes āķis", category: "Vilkšana" },
+  { name: "Elektriski izvirzāms sakabes āķis", category: "Vilkšana" },
+
+  //Sporta Aprīkojums
+  { name: "Sporta sēdekļi", category: "Sporta Aprīkojums" },
+  { name: "Sporta stūre", category: "Sporta Aprīkojums" },
+  { name: "Sporta pedāļi", category: "Sporta Aprīkojums" },
+  { name: "Sporta bremzes", category: "Sporta Aprīkojums" },
+  { name: "Sporta izplūde", category: "Sporta Aprīkojums" },
+  { name: "Sporta piekare", category: "Sporta Aprīkojums" },
+
+  //Elektriskais / Hibrīds
+  { name: "Mild Hybrid", category: "Elektriskais / Hibrīds" },
+  { name: "Plug-in Hybrid", category: "Elektriskais / Hibrīds" },
+  { name: "Pilnībā elektrisks", category: "Elektriskais / Hibrīds" },
+  { name: "AC uzlāde", category: "Elektriskais / Hibrīds" },
+  { name: "DC ātrā uzlāde", category: "Elektriskais / Hibrīds" },
+  { name: "Uzlādes kabelis", category: "Elektriskais / Hibrīds" },
+  { name: "Reģeneratīvā bremzēšana", category: "Elektriskais / Hibrīds" },
+  { name: "Enerģijas atgūšanas režīmi", category: "Elektriskais / Hibrīds" },
+
+  //Papildus
+  { name: "Webasto", category: "Papildus" },
+  { name: "Nakts redzamības sistēma", category: "Papildus" },
+  { name: "Digitālā atslēga", category: "Papildus" },
+  { name: "GPS", category: "Papildus" },
+  { name: "Izsekošanas sistēma", category: "Papildus" },
+  { name: "12V ligzdas", category: "Papildus" },
+  { name: "230V kontaktligzda", category: "Papildus" },
+  { name: "USB aizmugurē", category: "Papildus" },
+  { name: "Aizmugurējie ekrāni", category: "Papildus" },
+  { name: "DVD sistēma", category: "Papildus" },
+  { name: "Ledusskapis", category: "Papildus" },
+  { name: "Dzesējams cimdu nodalījums", category: "Papildus" },
+
+  //Dokumenti / Vēsture
+  { name: "2 atslēgas", category: "Dokumenti / Vēsture" },
+  { name: "Pilna servisa vēsture", category: "Dokumenti / Vēsture" },
+  { name: "Digitālā servisa vēsture", category: "Dokumenti / Vēsture" },
+  { name: "Servisa grāmatiņa", category: "Dokumenti / Vēsture" },
+  { name: "Rēķini par remontiem", category: "Dokumenti / Vēsture" },
+  { name: "Rūpnīcas dokumentācija", category: "Dokumenti / Vēsture" },
+  { name: "Tehniskā apskate", category: "Dokumenti / Vēsture" },
+  { name: "Nesen veikta apkope", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainīta eļļa", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainīti bremžu diski", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainītas bremžu uzlikas", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainīts bremžu šķidrums", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainītas riepas", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainītas ķēdes", category: "Dokumenti / Vēsture" },
+  { name: "Nesen mainīta eļļa ātrumkārbā", category: "Dokumenti / Vēsture" },
+  {
+    name: "Veikta vadības bloka programmēšana",
+    category: "Dokumenti / Vēsture",
+  },
+  {
+    name: "Veikta programmēšana (jaudas palielināšana)",
+    category: "Dokumenti / Vēsture",
+  },
+];
+
+async function seedEquipment() {
+  try {
+    await Equipment.deleteMany({});
+    await Equipment.insertMany(equipmentList);
+    console.log("Equipment catalog seeded");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export default seedEquipment;
